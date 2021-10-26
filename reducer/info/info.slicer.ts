@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LOCAL_SOTRAGE } from "../../constants";
-import { getLocalStorage } from "../../util"
 import { infoSet } from "./set/info.set";
 import { infoSelector } from "./selector/info.selector";
+import { getMyCookies } from "../../util";
 
 export type InfoState = {
     cigarretsPerDay: number;
@@ -13,7 +13,7 @@ export type InfoState = {
     declare: boolean;
 }
 
-const initialState: InfoState = getLocalStorage(LOCAL_SOTRAGE.INFO) || {
+const initialState: InfoState = getMyCookies(LOCAL_SOTRAGE.INFO) || {
     cigarretsPerDay: 25,
     cigarretsPerPack: 20,
     yearsSmook: 5,
