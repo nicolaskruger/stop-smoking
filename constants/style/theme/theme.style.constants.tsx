@@ -5,6 +5,7 @@ declare module 'styled-components' {
         backGround: string,
         color01: string,
         color02: string,
+        colorErro: string,
         textColor01: string,
         textColor02: string,
         textColor03: string
@@ -15,6 +16,7 @@ export const themeWhite: DefaultTheme = {
     backGround: "white",
     color01: "#1fc817",
     color02: "red",
+    colorErro: "orange",
     textColor01: "black",
     textColor02: "white",
     textColor03: "gray"

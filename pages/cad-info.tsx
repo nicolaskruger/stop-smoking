@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import styled from "styled-components"
 import { Container, H1, P, PulseLalbel, RedirectRouter } from "../components"
 import { InputAllInfoCad } from "../components/input";
@@ -18,6 +18,11 @@ const Section = styled.section`
 const Cad: NextPage = () => {
 
     const [cigarrtesPerDay, setCigaretsPerDay] = useState(0);
+    const [cigaretesPerDayErro, setCigaretsPerDayErro] = useState("");
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    }
 
     return (
         <Layout>
@@ -31,11 +36,15 @@ const Cad: NextPage = () => {
                 <PulseLalbel>
                     {new Date().toDateString()}
                 </PulseLalbel>
-                <InputAllInfoCad
-                    value={cigarrtesPerDay}
-                    onChange={setCigaretsPerDay}
-                    type="number" label="Cigarros fumados por dia"
-                />
+                <form onSubmit={handleSubmit} action="">
+                    <InputAllInfoCad
+                        value={cigarrtesPerDay}
+                        onChange={setCigaretsPerDay}
+                        type="number"
+                        label="Cigarros fumados por dia"
+                        erroMessage="erro"
+                    />
+                </form>
             </Section>
         </Layout>
     )

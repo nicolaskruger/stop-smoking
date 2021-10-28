@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Background, Container } from "..";
+import { Background, Container, RedirectRouter } from "..";
 
 const Layout: FC = ({ children }) => {
     return (
