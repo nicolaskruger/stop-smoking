@@ -8,7 +8,7 @@ type FormCarInfoReturn = {
     activeErro: () => void
 }
 
-const useFormCadInfo = (_value: number, _erro: string): FormCarInfoReturn => {
+const useFormCadInfo = (_value: number, _erro: string = "valor invalido"): FormCarInfoReturn => {
     const [value, setValue] = useState(_value);
     const [erro, setErro] = useState("")
     const activeErro = () => {

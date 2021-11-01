@@ -2,17 +2,15 @@ import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import { InputCad, InputCadColor, InputCadState, InputProps, MyInputProps } from "..";
 import { useInputCad } from "../../../hooks";
+import { LabelInput } from "../../../styles";
 
 interface Props extends InputProps {
     label: string;
     erroMessage?: string
 }
 
-const Label = styled.label<MyInputProps>`
+const Label = styled(LabelInput) <MyInputProps>`
     color: ${props => InputCadColor[props.state](props.theme)};
-    display: flex;
-    flex-direction: column;
-    font-size: 12px;
 `;
 
 export const InputAllInfoCad: FC<Props> = (props) => {
