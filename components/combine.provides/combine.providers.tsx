@@ -2,11 +2,15 @@ import { FC } from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { themeWhite } from "../../constants";
-import { store } from "../../reducer";
+import { store, themeSelector, useAppSelector } from "../../reducer";
 
 const MyThemeProvider: FC = ({ children }) => {
+
+    const theme = useAppSelector(themeSelector.getState);
+
+
     return (
-        <ThemeProvider theme={themeWhite}>
+        <ThemeProvider theme={theme}>
             {children}
         </ThemeProvider>
     )

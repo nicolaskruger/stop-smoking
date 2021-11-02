@@ -1,18 +1,21 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
+import { DefaultTheme } from "styled-components";
 import { LOCAL_SOTRAGE } from "../../constants";
-import { setLocalStorage } from "../../util";
 import { setMyCookies } from "../../util/cookies/cookies.utils";
 import { infoReducer, InfoState } from "../info/info.slicer";
+import { themeReducer } from "../theme/theme.slicer";
 
 
 export const store = configureStore({
     reducer: {
-        info: infoReducer
+        info: infoReducer,
+        theme: themeReducer
     }
 })
 
 store.subscribe(() => {
-    setMyCookies<InfoState>(store.getState().info, LOCAL_SOTRAGE.INFO)
+    setMyCookies<InfoState>(store.getState().info, LOCAL_SOTRAGE.INFO);
+    setMyCookies<DefaultTheme>(store.getState().theme, LOCAL_SOTRAGE.THEME);
 })
 
 export type AppDispatch = typeof store.dispatch;

@@ -1,5 +1,6 @@
 const LOCAL_SOTRAGE = {
-    INFO: "@INFO"
+    INFO: "@INFO",
+    THEME: "@THEME"
 };
 
 export {

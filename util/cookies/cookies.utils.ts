@@ -2,7 +2,7 @@ import nookies, { parseCookies, setCookie } from "nookies";
 
 const getMyCookies = <T>(key: string): T => {
     return JSON.parse(
-        parseCookies()[key] || "[]"
+        parseCookies()[key] || "false"
     ) as T
 }
 const setMyCookies = <T>(val: T, key: string) => {

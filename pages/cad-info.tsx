@@ -24,8 +24,17 @@ const Form = styled.form`
 `;
 
 interface FormWithLabel extends FormCarInfoReturn {
-    label: string
+    label: string,
+    hidde: boolean
 };
+
+type FormDto = {
+    cigaretesPerDay: FormWithLabel,
+    cigaretesOnPocket: FormWithLabel,
+    yearsSmoke: FormWithLabel,
+    price: FormWithLabel,
+    coin: [string, (val: string) => void]
+}
 
 const Cad: NextPage = () => {
 
@@ -36,6 +45,7 @@ const Cad: NextPage = () => {
         "Preço por maço"
     ]
 
+
     const myForm: FormWithLabel[] = [
         useFormCadInfo(25),
         useFormCadInfo(20),
@@ -43,8 +53,11 @@ const Cad: NextPage = () => {
         useFormCadInfo(0)
     ].map((value, index): FormWithLabel => ({
         ...value,
-        label: myLabel[index]
+        label: myLabel[index],
+        hidde: (index === (3))
     }));
+
+    // const form:FormDto = {} 
 
     const [coin, setCoin] = useState("");
 
@@ -53,6 +66,7 @@ const Cad: NextPage = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        event.stopPropagation();
     }
 
     return (
@@ -77,6 +91,7 @@ const Cad: NextPage = () => {
                                 type="number"
                                 label={val.label}
                                 erroMessage={val.erro}
+                                button={val.hidde}
                             />
                         ))
                     }

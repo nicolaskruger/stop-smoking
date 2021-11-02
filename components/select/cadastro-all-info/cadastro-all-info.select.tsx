@@ -8,7 +8,7 @@ type SelectAllInfoProps = SelectProps & {
 }
 
 const Label = styled(LabelInput)`
-    color: ${props => props.theme.color02};
+    color: ${props => props.theme.textColor01};
 `;
 
 const SelectAllInfo: FC<SelectProps> = (props) => {
