@@ -1,8 +1,11 @@
 import nookies, { parseCookies, setCookie } from "nookies";
 
 const getMyCookies = <T>(key: string): T => {
+    const config = (val: string) => {
+        return val === "undefined" ? "" : val;
+    }
     return JSON.parse(
-        parseCookies()[key] || "false"
+        config(parseCookies()[key]) || "false"
     ) as T
 }
 const setMyCookies = <T>(val: T, key: string) => {

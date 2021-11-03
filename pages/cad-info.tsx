@@ -1,11 +1,15 @@
 import { NextPage } from "next"
+import { useRouter } from "next/dist/client/router";
 import { FormEvent, useState } from "react";
 import styled from "styled-components"
 import { Container, H1, P, PulseLalbel, RedirectRouter } from "../components"
+import { SubmitButton } from "../components/button";
 import { InputAllInfoCad } from "../components/input";
 import { Layout } from "../components/layout/layout.component";
 import { SelectAllInfo } from "../components/select";
-import { FormCarInfoReturn, useFormCadInfo } from "../hooks";
+import { ROUTES_FRONTEND } from "../constants";
+import { FormCarInfoReturn, useFormCadInfo, useFormList } from "../hooks";
+import { cronAction, infoActions, useAppDispatch } from "../reducer";
 
 const Title = "Parabéns pela sua decisão em deixar de fumar !";
 
@@ -23,54 +27,49 @@ const Form = styled.form`
     gap: 20px;
 `;
 
+const Div = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+`;
+
 interface FormWithLabel extends FormCarInfoReturn {
     label: string,
     hidde: boolean
 };
 
-type FormDto = {
-    cigaretesPerDay: FormWithLabel,
-    cigaretesOnPocket: FormWithLabel,
-    yearsSmoke: FormWithLabel,
-    price: FormWithLabel,
-    coin: [string, (val: string) => void]
-}
 
 const Cad: NextPage = () => {
 
-    const myLabel = [
-        "Cigarros fumados por dia",
-        "Cigarros num maço",
-        "Anos a fumar",
-        "Preço por maço"
-    ]
+    const dispatch = useAppDispatch();
 
+    const router = useRouter();
 
-    const myForm: FormWithLabel[] = [
-        useFormCadInfo(25),
-        useFormCadInfo(20),
-        useFormCadInfo(5),
-        useFormCadInfo(0)
-    ].map((value, index): FormWithLabel => ({
-        ...value,
-        label: myLabel[index],
-        hidde: (index === (3))
-    }));
-
-    // const form:FormDto = {} 
-
-    const [coin, setCoin] = useState("");
-
-    const [cigarrtesPerDay, setCigaretsPerDay] = useState(0);
-    const [cigaretesPerDayErro, setCigaretsPerDayErro] = useState("");
+    const {
+        myForm,
+        coin,
+        setCoin,
+        toDispatch,
+        validate
+    } = useFormList();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         event.stopPropagation();
+        if (!validate()) return;
+        dispatch(
+            infoActions.setState({
+                ...toDispatch()
+            })
+        )
+        dispatch(
+            cronAction.stopDate()
+        )
+        router.push(ROUTES_FRONTEND.HOME);
     }
 
     return (
-        <Layout>
+        <Layout ligth>
             <Section>
                 <H1>
                     {Title}
@@ -95,7 +94,10 @@ const Cad: NextPage = () => {
                             />
                         ))
                     }
-                    <SelectAllInfo value={coin} onChange={setCoin} />
+                    <Div>
+                        <SelectAllInfo value={coin} onChange={setCoin} />
+                        <SubmitButton />
+                    </Div>
                 </Form>
             </Section>
         </Layout>

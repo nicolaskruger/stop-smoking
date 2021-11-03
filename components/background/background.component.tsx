@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-const Background = styled.div`
-    background-color: ${props => props.theme.backGround};
+type BackgroudProps = {
+    ligth?: boolean
+}
+
+const Background = styled.div<BackgroudProps>`
+    background-color: ${props => props.ligth ? props.theme.backGround : props.theme.backGround01};
 `;
 
 export {

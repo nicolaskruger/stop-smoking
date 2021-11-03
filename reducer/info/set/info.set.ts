@@ -15,7 +15,7 @@ const declareTrue = (state: InfoState): InfoState => (
     }
 )
 
-interface InfoSimpleState extends Omit<InfoState, 'declare'> {
+export interface InfoSimpleState extends Omit<InfoState, 'declare'> {
 
 }
 

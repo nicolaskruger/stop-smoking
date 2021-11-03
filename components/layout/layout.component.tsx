@@ -1,9 +1,13 @@
 import { FC } from "react";
 import { Background, Container, RedirectRouter } from "..";
 
-const Layout: FC = ({ children }) => {
+type Props = {
+    ligth?: boolean
+}
+
+const Layout: FC<Props> = ({ children, ligth }) => {
     return (
-        <Background>
+        <Background ligth={ligth}>
             <Container>
                 {children}
             </Container>

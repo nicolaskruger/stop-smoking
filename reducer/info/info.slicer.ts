@@ -1,8 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LOCAL_SOTRAGE } from "../../constants";
-import { infoSet } from "./set/info.set";
+import { infoSet, InfoSimpleState } from "./set/info.set";
 import { infoSelector } from "./selector/info.selector";
 import { getMyCookies } from "../../util";
+
+export type {
+    InfoSimpleState
+}
 
 export type InfoState = {
     cigarretsPerDay: number;

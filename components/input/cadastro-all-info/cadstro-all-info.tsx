@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, MouseEvent, useEffect } from "react";
 import styled from "styled-components";
 import { InputCad, InputCadColor, InputCadState, InputProps, MyInputProps } from "..";
 import { useInputCad } from "../../../hooks";
@@ -37,6 +37,12 @@ export const InputAllInfoCad: FC<Props> = (props) => {
     }, [erroMessage])
 
 
+
+    const handleClick = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, action: (val: number) => number) => {
+        event.stopPropagation();
+        props.onChange(action)
+    }
+
     const plus = (val: number) => val + 1;
     const less = (val: number) => val - 1;
 
@@ -51,8 +57,8 @@ export const InputAllInfoCad: FC<Props> = (props) => {
                         onFocus={() => setState(InputCadState.FOCUS)}
                         onBlur={() => setState(InputCadState.NORMAL)}
                     />
-                    <OperButtonLess onClick={() => props.onChange(less)} hidden={props.button} />
-                    <OperButtonPlus onClick={() => props.onChange(plus)} hidden={props.button} />
+                    <OperButtonLess type="button" onClick={(event) => handleClick(event, less)} hidden={props.button} />
+                    <OperButtonPlus type="button" onClick={(event) => handleClick(event, plus)} hidden={props.button} />
                 </Div>
                 {erroMessage}
             </Label>

@@ -3,6 +3,7 @@ import { DefaultTheme } from "styled-components";
 declare module 'styled-components' {
     export interface DefaultTheme {
         backGround: string,
+        backGround01: string,
         color01: string,
         color02: string,
         colorErro: string,
@@ -14,6 +15,7 @@ declare module 'styled-components' {
 
 export const themeWhite: DefaultTheme = {
     backGround: "white",
+    backGround01: "whitesmoke",
     color01: "#1fc817",
     color02: "red",
     colorErro: "orange",
