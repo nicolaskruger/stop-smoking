@@ -60,6 +60,7 @@ export const cronSelector = {
         ...range(6, 1).map((val): ScaleDto => ({
             name: `${val} Dia`,
             scale: SECONDS_IN_ONE_DAY * val
-        }))
+        })),
+
     ])
 }
