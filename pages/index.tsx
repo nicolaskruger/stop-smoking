@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout ligth={false}>
       <Cron />
     </Layout>
   )

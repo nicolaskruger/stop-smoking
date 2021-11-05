@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { Box } from "..";
+import { Box, MyCircularProgressBar } from "..";
+import { CronTop } from "./section";
 
 const Cron: FC = () => {
     return (
         <Box>
-            test
+            <CronTop />
         </Box>
     )
 }

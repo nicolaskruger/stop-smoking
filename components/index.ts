@@ -6,3 +6,4 @@ export * from "./text/text.component";
 export * from "./label";
 export * from "./box/box.component";
 export * from "./cron/cron.component";
+export * from "./circular-progress-bar/circular-progress-bar.component";

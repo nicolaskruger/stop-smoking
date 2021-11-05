@@ -15,7 +15,7 @@ declare module 'styled-components' {
 
 export const themeWhite: DefaultTheme = {
     backGround: "white",
-    backGround01: "whitesmoke",
+    backGround01: "#d8d8d8",
     color01: "#1fc817",
     color02: "red",
     colorErro: "orange",
