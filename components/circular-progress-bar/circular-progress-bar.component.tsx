@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { buildStyles, CircularProgressbar, CircularProgressbarWithChildren } from "react-circular-progressbar";
 import styled from "styled-components";
-import { themeSelector, useAppSelector } from "../../reducer";
+import { cronSelector, themeSelector, useAppSelector } from "../../reducer";
 
 const Div = styled.div`
     width: 30vw;
@@ -13,12 +13,17 @@ const Span = styled.span`
     color: ${props => props.theme.color02};
 `;
 
-type Props = {
-    percent: number
-}
+const Span00 = styled.span`
+    font-size: 3vw;
+    color: ${props => props.theme.textColor01};
+`;
 
-const MyCircularProgressBar: FC<Props> = ({ percent }) => {
+
+const MyCircularProgressBar: FC = () => {
     const { backGround01, color02 } = useAppSelector(themeSelector.getState);
+    const scale = useAppSelector(cronSelector.getScale);
+    const diff = useAppSelector(cronSelector.getTimeDiffSeconds)
+    const percent = Math.round(diff / scale.scale * 100);
     return (
         <Div>
             <CircularProgressbarWithChildren
@@ -33,9 +38,11 @@ const MyCircularProgressBar: FC<Props> = ({ percent }) => {
                 })}
             >
                 <Span>
-                    { }
                     {`${percent}%`}
                 </Span>
+                <Span00>
+                    {scale.name}
+                </Span00>
             </CircularProgressbarWithChildren>
         </Div>
     );
